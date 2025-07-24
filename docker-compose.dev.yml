@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:15
+    container_name: platform-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: NikitaStillSLATT
+      POSTGRES_DB: platform
+    ports: ["5432:5432"]
+    volumes: ["db_data:/var/lib/postgresql/data"]
+
+  redis:
+    image: redis:7-alpine
+    container_name: platform-redis
+    ports: ["6379:6379"]
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    container_name: platform-kafka
+    ports: ["9092:9092"]
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on: ["zookeeper"]
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    container_name: platform-zk
+    ports: ["2181:2181"]
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+volumes:
+  db_data:
