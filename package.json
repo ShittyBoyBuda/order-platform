@@ -13,6 +13,9 @@
     "prettier": "^3.2.5",
     "eslint": "^8.57.0",
     "typescript": "^5.4.5",
-    "@types/node": "^20.12.12"
+    "@types/node": "^20.12.12",
+    "@platform/eslint-config": "workspace:*",
+    "@platform/ts-config": "workspace:*",
+    "@platform/prisma": "workspace:*"
   }
 }
