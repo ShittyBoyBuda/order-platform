@@ -1,0 +1,14 @@
+module.exports = {
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'eslint:recommended',
+    '@typescript-eslint/recommended',
+    'prettier',
+  ],
+  env: { node: true, es2022: true },
+  rules: {
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+  },
+};
